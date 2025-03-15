@@ -1,6 +1,6 @@
 # Ama Earth Bot - Chatbot Project
 
-This project features a chatbot for **Ama Earth Group** with a user-friendly and mobile responsive. interface. It allows users to ask questions or generate environmental reports, and the bot responds with answers fetched from an API. The design follows the **Ama Earth Group** brand colors and modern, dark-themed styling.
+This project features a chatbot for **Ama Earth Group** with a user-friendly and mobile responsive interface. It allows users to ask questions or generate environmental reports, and the bot responds with answers fetched from an external API. The design follows the colors from the Ama Earth Group website and modern, dark-themed styling.
 
 Available live at: https://ama-earth-chatbot.vercel.app
 
