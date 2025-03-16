@@ -1,3 +1,6 @@
+// Load environment variables
+require('dotenv').config();
+
 async function sendMessage() {
   const input = document.getElementById("userInput").value;
   const chatContainer = document.getElementById("chat_container");
@@ -20,11 +23,14 @@ async function sendMessage() {
   chatContainer.scrollTop = chatContainer.scrollHeight;
 
   try {
+    // Use the API key from environment variable
+    const apiKey = process.env.API_KEY;
+
     // Call the API
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.NEXT_PUBLIC_CLIENT_KEY}`,
+        "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
