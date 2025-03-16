@@ -1,7 +1,7 @@
 async function sendMessage() {
   const input = document.getElementById("userInput").value;
   const chatContainer = document.getElementById("chat_container");
-  
+
   if (!input) return;
 
   // Display user's message
@@ -20,22 +20,26 @@ async function sendMessage() {
   chatContainer.scrollTop = chatContainer.scrollHeight;
 
   try {
-    // Call the API
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
+    // New API URL and options
+    const url = 'https://chatgpt4-ai-chatbot.p.rapidapi.com/ask';
+    const options = {
+      method: 'POST',
       headers: {
-        "Authorization": "Bearer ${process.env.API_KEY}",
-        "Content-Type": "application/json"
+        'x-rapidapi-key': 'e06cdfd3d6msh2d7b35a0e087920p11a9e8jsnf54c894f8f01',
+        'x-rapidapi-host': 'chatgpt4-ai-chatbot.p.rapidapi.com',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "model": "google/gemma-3-1b-it:free",
-        "messages": [{ "role": "user", "content": input }]
+        query: input
       })
-    });
+    };
 
-    // Handle the response
-    const data = await response.json();
-    const markdownText = data.choices?.[0]?.message?.content || "No response received.";
+    // Call the new API
+    const response = await fetch(url, options);
+    const result = await response.json();  // Parse the JSON response
+
+    // Extract just the response text
+    const markdownText = result.response || "No response received.";
 
     // Remove the loading message
     chatContainer.removeChild(loadingMessage);
